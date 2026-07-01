@@ -1,5 +1,23 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.5 — 2026-07-01 — Launch hardening / de-WordPress (ThatsKrispy)
+
+- **Removed the last WordPress dependency:** the menu page's "Download PDF Menu" link pointed at the
+  old WP-hosted PDF (with outdated prices). Removed — the full, accurate menu now lives on the page.
+  Zero `wp-content` references remain anywhere in the site.
+- **Added a branded 404 page** ("This Page Slipped Off the Menu") — matches the site, with Back Home
+  and View Menu CTAs. Cloudflare Pages serves it automatically for unknown routes.
+- Confirmed sitemap and old-URL 301 redirects (menu-02, contact-02, brunch, events) are current.
+
+### ⚠️ Still needed from the client before launch
+1. **Web3Forms access key** — contact + newsletter forms are placeholders (`YOUR_WEB3FORMS_KEY`) and
+   won't send until the real key is added. **Launch blocker.**
+2. **Order-online URLs** — DoorDash / Uber Eats / Grubhub buttons link to each platform's homepage;
+   replace with KamiKoi's direct store links.
+3. **Contact email** — confirm `info@kamikoisushifusion.com`.
+4. **Domain cutover** — point `kamikoisushifusion.com` at the Cloudflare Pages project (it still serves
+   the old WordPress site).
+
 ## v2.4 — 2026-07-01 — Menu synced to Canva master (ThatsKrispy)
 
 - **Rebuilt the entire menu from the client's Canva master ("KamiKoi 2026 V2")** — exported the
