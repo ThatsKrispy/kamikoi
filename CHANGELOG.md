@@ -1,5 +1,19 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.3 — 2026-07-01 — Consent + accessibility rebuilt (ThatsKrispy)
+
+- **Replaced the copy-pasted "Lazy Oyster" consent/a11y scripts** (wrong brand, teal colors,
+  and the loaded one had no styling) with a single self-contained, KamiKoi-themed widget.
+- **Cookie consent (GDPR/CCPA):** Accept All / Reject Non-Essential / Customize with equal
+  prominence; granular Essential (always on) / Analytics / Marketing toggles; nothing
+  non-essential loads before consent (event-gated); versioned + timestamped storage; a
+  persistent "Cookies" button to change or withdraw consent anytime; Privacy + Cookie Policy links.
+- **Accessibility toolbar (ADA/WCAG):** text sizing, Normal/High/Dark contrast, grayscale,
+  highlight links, big cursor, pause motion, reading guide, readable + dyslexia-friendly fonts,
+  reset; keyboard accessible, ARIA states, focus management, honors prefers-reduced-motion; persists.
+- Expanded the **Cookie Policy** section of the privacy page (categories, how to withdraw, rights) with a #cookies anchor.
+- Removed dead js/consent.js and js/accessibility.js. Cache-busted the widget script.
+
 ## v2.2 — 2026-07-01 — Bold, high-energy motion pass (ThatsKrispy)
 
 Site-wide visual energy upgrade, applied globally through `css/style.css`

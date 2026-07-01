@@ -7,3 +7,8 @@ _*.py
 assets/images/*.jpg
 assets/images/*.jpeg
 assets/images/*.JPG
+
+# Local dev helpers / setup notes (not part of the deployed site)
+push-to-main.sh
+*-setup.md
+*-workflow.md
