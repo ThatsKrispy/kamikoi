@@ -1,3 +1,9 @@
 .DS_Store
 _source-photos/
-_build.py
+_staging/
+_*.py
+
+# Raw source photography (site serves optimized .webp only)
+assets/images/*.jpg
+assets/images/*.jpeg
+assets/images/*.JPG

@@ -1,5 +1,44 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.1 — 2026-07-01 — Gallery cleanup + real logo (ThatsKrispy)
+
+**Gallery**
+- **Removed 6 near-duplicate gallery photos** (same person or same dish from the same shoot),
+  keeping the stronger shot from each pair: blue-dress guest, white-cardigan guest,
+  whole fried snapper, poke bowl, chicken-saltado bowl, and churrasco steak.
+- Gallery renumbered to contiguous `kamikoi-gallery-1..42` (was 48); `_build.py` loop range
+  updated and all pages rebuilt. No broken image references remain.
+
+**Logo**
+- **Replaced placeholder logo with the real KAMIKOI Sushi Fusion artwork** sitewide
+  (nav, footer, newsletter watermark, favicon), from client-supplied vector PDFs.
+- Generated a **white-on-transparent** version for the dark nav/footer (derived from the
+  standard artwork so letter counters and the shrimp stay transparent — portable to any bg),
+  plus `logo-black` for light backgrounds, `logo-icon` (koi mark) and a new favicon +
+  apple-touch-icon.
+- Corrected logo aspect ratio in markup (199×52) and added `?v=20260701` cache-busting so
+  browsers/Cloudflare pick up the new files.
+
+## v2.0 — 2026-06-30 — Nightlife redesign (ThatsKrispy)
+
+**Direction shift:** repositioned KamiKoi as Miami's sushi + nightlife hotspot — darker,
+more vibrant and high-energy, with party/people photography front and center.
+
+- **New dark theme** across every page — near-black backgrounds, glowing crimson/gold/magenta
+  neon accents, energetic type. (`css/style.css` fully rewritten; cache-busted to `?v=20260630-v2`.)
+- **Removed Sunday Brunch** entirely (page, nav, sitemap). `/brunch` now 301-redirects to `/nightlife`.
+- **New Nightlife & Events page** (`nightlife.html`) with the weekly lineup, Ladies Night and Live Music.
+- **Weekly specials** (home + nightlife):
+  Mon 10% Off · Tue Kids Eat Free · Wed ½ Off Wine & Sake · Thu Ladies Night (free drinks) · Fri Weekend Kickoff.
+  Live music called out for **Thursday & Friday**.
+- **Homepage reworked** — nightlife hero, weekly-specials strip, Ladies Night band, Happy Hour band,
+  bigger food+drinks+nightlife gallery.
+- **48 curated real photos placed** (up from 23), no duplicates — party crowds, Ladies Night,
+  the live-music performer, cocktails, interiors and food. Gallery expanded to 30 images.
+- Unreferenced/placeholder images pruned from the repo.
+
+_Pre-launch confirmations from v1.0 still apply (logo, email, order links, Web3Forms key)._
+
 ## v1.0 — 2026-06-30 — Full static rebuild (ThatsKrispy)
 
 **What changed:** Rebuilt KamiKoiSushiFusion.com from the old WordPress / Slider Revolution

@@ -1,7 +1,10 @@
-# Old WordPress URLs -> clean URLs (Cloudflare Pages serves .html as clean URLs)
+# Old WordPress + prior URLs -> clean URLs (Cloudflare Pages serves .html as clean URLs)
 /menu-02            /menu          301
 /menu-02/           /menu          301
 /contact-02         /contact       301
 /contact-02/        /contact       301
 /happy-hour2        /happy-hour    301
 /happy-hour2/       /happy-hour    301
+/brunch             /nightlife     301
+/brunch/            /nightlife     301
+/events             /nightlife     301
