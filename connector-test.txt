@@ -1,0 +1,1 @@
+Write access verified via Cowork GitHub PAT connector on 2026-07-01. Safe to delete.
