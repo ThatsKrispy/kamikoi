@@ -1,5 +1,17 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.4 — 2026-07-01 — Menu synced to Canva master (ThatsKrispy)
+
+- **Rebuilt the entire menu from the client's Canva master ("KamiKoi 2026 V2")** — exported the
+  design and read it visually to map every item, description and price with correct alignment.
+- New category structure matching the master: Appetizers (incl. soups), Peruvian Causas, Ceviches,
+  From the Wok (choose style + protein), Risotto, Butcher's Select, Sides, Chef's Choice, Seafood,
+  Sushi (every roll $23), Desserts, Coffee — 64 dishes + 22 priced options.
+- Updated all prices to the master (e.g. Chicken Tostones $20, Shrimp Croquettes $20, Ceviche Trio $39,
+  Ribeye over Huancaína $58, Chef's Choice $48, Mixed Seafood Jalea $45).
+- Cleaned obvious source typos (aji→ají, cilantro, algarrobina, Cappuccino) without changing meaning.
+- Fixed the home "Rice & Noodles" card link to the new #wok anchor. Kept the existing menu design/structure.
+
 ## v2.3 — 2026-07-01 — Consent + accessibility rebuilt (ThatsKrispy)
 
 - **Replaced the copy-pasted "Lazy Oyster" consent/a11y scripts** (wrong brand, teal colors,
