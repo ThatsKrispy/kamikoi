@@ -1,5 +1,20 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.2 — 2026-07-01 — Bold, high-energy motion pass (ThatsKrispy)
+
+Site-wide visual energy upgrade, applied globally through `css/style.css`
+and one new script (`js/fx.js`) so every page benefits without per-page edits.
+
+- **Neon scroll-progress bar** across the top of every page.
+- **Site-wide scroll reveals** with staggered grids (cards, features, specials,
+  reviews, gallery, menu) — added in JS so content stays visible if JS is off.
+- **Animated glowing underline** beneath centered section titles and page headers.
+- **Hero parallax + animated scroll cue**; pulsing hero color glow.
+- **Button shine sweep** on hover; **nav logo glow** on hover; stronger card hover glow.
+- Fully **`prefers-reduced-motion` safe** (all motion disabled, content shown).
+- Verified: no horizontal overflow at 390/768/1366px, no console errors, all pages render.
+- Cache-busted CSS/JS to `?v=20260701-v4`.
+
 ## v2.1 — 2026-07-01 — Gallery cleanup + real logo (ThatsKrispy)
 
 **Gallery**

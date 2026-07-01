@@ -356,8 +356,50 @@ header[role=banner]{position:sticky;top:0;z-index:1000}
 .navbar__order{animation:glowpulse 3.2s ease-in-out infinite}
 .navbar__order:hover{animation:none}
 
+/* ============================================================ FX LAYER v4 — bold, high-energy (global)
+   Applied site-wide via css + js/fx.js. Reveal classes are added by JS,
+   so with JS off everything stays fully visible (no hidden content). */
+
+/* scroll progress bar (neon) */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:2000;background:linear-gradient(90deg,var(--crimson),var(--gold),var(--magenta));background-size:200% auto;box-shadow:0 0 12px rgba(228,20,31,.7);animation:edgeflow 6s linear infinite;transition:width .12s linear}
+
+/* site-wide scroll reveals (JS-driven) */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .7s cubic-bezier(.16,.84,.44,1),transform .7s cubic-bezier(.16,.84,.44,1);will-change:opacity,transform}
+.reveal[data-fx=scale]{transform:scale(.9)}
+.reveal[data-fx=left]{transform:translateX(-46px)}
+.reveal[data-fx=right]{transform:translateX(46px)}
+.reveal.in{opacity:1;transform:none}
+
+/* animated glowing underline beneath centered section titles + page headers */
+.section .text-center h2::after,.page-head h1::after,.menu-hero h1::after{content:"";display:block;width:66px;height:3px;margin:18px auto 0;border-radius:2px;background:linear-gradient(90deg,var(--crimson),var(--gold),var(--magenta),var(--crimson));background-size:200% auto;animation:edgeflow 5s linear infinite;box-shadow:0 0 14px rgba(228,20,31,.55)}
+
+/* button shine sweep on hover */
+.btn{position:relative;overflow:hidden}
+.btn>*{position:relative;z-index:1}
+.btn::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);pointer-events:none}
+.btn:hover::after{animation:btnshine .85s ease}
+@keyframes btnshine{to{left:140%}}
+
+/* nav logo hover glow */
+.navbar__logo img{transition:filter .25s ease,transform .25s ease}
+.navbar__logo:hover img{filter:drop-shadow(0 0 10px rgba(228,20,31,.75));transform:scale(1.03)}
+
+/* hero: pulsing color glow + animated scroll cue */
+.hero__overlay::after{animation:heroglow 7s ease-in-out infinite}
+@keyframes heroglow{0%,100%{opacity:.8}50%{opacity:1}}
+.scroll-cue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:3;width:26px;height:42px;border:2px solid rgba(255,255,255,.5);border-radius:14px;display:flex;justify-content:center;padding-top:7px}
+.scroll-cue span{width:4px;height:9px;border-radius:2px;background:var(--gold);box-shadow:var(--glow-gold);animation:cuemove 1.6s ease-in-out infinite}
+@keyframes cuemove{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(13px)}}
+
+/* card hover energy boost (glow ring) */
+.cat-card,.feature,.special,.drink,.review{will-change:transform}
+.feature:hover,.special:hover,.drink:hover,.review:hover{box-shadow:0 18px 46px rgba(0,0,0,.55),0 0 22px rgba(228,20,31,.22)}
+.gallery-grid img:hover{transform:scale(1.06)}
+
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .hero__img{transform:none!important}
   .ticker__track{animation:none!important}
+  .scroll-progress,.scroll-cue{display:none!important}
+  .reveal{opacity:1!important;transform:none!important}
 }
