@@ -1,7 +1,7 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
    Adds scroll progress, site-wide reveals, hero parallax + scroll cue,
-   and festive photo backdrops behind interior page headers.
+   festive photo headers, and the homepage party hero.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
@@ -19,6 +19,14 @@
     privacy: 'kamikoi-interior-dining-miami',
     accessibility: 'kamikoi-interior-dining-miami'
   };
+  // Homepage hero: use the fun party photo, never the empty-venue shot.
+  if (page === 'index') {
+    var heroImg = document.querySelector('.hero__img');
+    if (heroImg && /nightlife-hero-miami/.test(heroImg.getAttribute('src') || '')) {
+      heroImg.setAttribute('src', 'assets/images/kamikoi-ladies-night-miami.webp');
+      heroImg.setAttribute('alt', 'Guests celebrating with sparklers, cocktails and food at KamiKoi Sushi Fusion in Miami');
+    }
+  }
   var img = MAP[page];
   if (!img) return;
   var el = document.querySelector('.menu-hero') || document.querySelector('.page-head');
