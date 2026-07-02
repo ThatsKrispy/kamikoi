@@ -19,12 +19,13 @@
     privacy: 'kamikoi-interior-dining-miami',
     accessibility: 'kamikoi-interior-dining-miami'
   };
-  // Homepage hero: use the fun party photo, never the empty-venue shot.
+  // Homepage hero: use a fun, younger party photo, never the empty-venue shot.
   if (page === 'index') {
     var heroImg = document.querySelector('.hero__img');
-    if (heroImg && /nightlife-hero-miami/.test(heroImg.getAttribute('src') || '')) {
-      heroImg.setAttribute('src', 'assets/images/kamikoi-ladies-night-miami.webp');
-      heroImg.setAttribute('alt', 'Guests celebrating with sparklers, cocktails and food at KamiKoi Sushi Fusion in Miami');
+    if (heroImg && /nightlife-hero-miami|ladies-night-miami/.test(heroImg.getAttribute('src') || '')) {
+      heroImg.setAttribute('src', 'assets/images/kamikoi-events-hero.webp');
+      heroImg.setAttribute('alt', 'Young guests cheering with sparklers and cocktails at KamiKoi Sushi Fusion in Miami');
+      heroImg.style.objectPosition = 'center 28%';
     }
   }
   var img = MAP[page];
