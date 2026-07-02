@@ -1,7 +1,7 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
-   Brand accent, festive photo headers, rotating food cover, scroll
-   progress, site-wide reveals, hero parallax + scroll cue.
+   Brand accent, live order/review links, festive photo headers, rotating
+   food cover, scroll progress, site-wide reveals, hero parallax + cue.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
@@ -18,6 +18,28 @@
     '.btn-primary:hover{box-shadow:0 6px 22px rgba(237,28,36,.42)}' +
     '.navbar__order{animation:none;box-shadow:0 3px 14px rgba(237,28,36,.22)}';
   document.head.appendChild(s);
+})();
+
+/* -- LIVE ORDER + REVIEW LINKS (all pages) --- */
+(function () {
+  var UBER = 'https://www.ubereats.com/store/kami-koi-sushi-fusion/H_1ltwIhQrSnu_xtrYCXhA';
+  var GRUB = 'https://www.grubhub.com/restaurant/kami-koi-sushi-fusion-13816-sw-56th-st-miami/10610608';
+  var TOAST = 'https://www.toasttab.com/local/order/kami-koi-sushi-fusion-13816-southwest-56th-street';
+  var YELP = 'https://www.yelp.com/biz/kami-koi-sushi-fusion-kendale-lakes';
+  document.querySelectorAll('a.order-chip').forEach(function (a) {
+    var h = a.getAttribute('href') || '';
+    if (/ubereats\.com/.test(h)) a.href = UBER;
+    else if (/grubhub\.com/.test(h)) a.href = GRUB;
+    else if (/doordash\.com/.test(h)) { a.href = TOAST; a.textContent = 'Order Online'; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+  });
+  document.querySelectorAll('.footer__social').forEach(function (soc) {
+    if (soc.querySelector('[data-yelp]')) return;
+    var y = document.createElement('a');
+    y.href = YELP; y.target = '_blank'; y.rel = 'noopener noreferrer';
+    y.setAttribute('aria-label', 'Yelp'); y.setAttribute('data-yelp', '1');
+    y.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 21l1.5-6.8L2.2 9l6.9-.7z"/></svg>';
+    soc.appendChild(y);
+  });
 })();
 
 /* -- PAGE-HEADER PHOTOS (festive / women-enjoying imagery behind titles) --- */
