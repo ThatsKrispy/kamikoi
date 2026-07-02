@@ -1,5 +1,23 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.8 — 2026-07-02 — Events page + more food photography (ThatsKrispy)
+
+- **New Events page** (`events.html`, in main nav) for private events and full-restaurant
+  buyouts: decorated-venue hero, "what we host" grid (birthdays, corporate, showers/quinces,
+  buyouts), a gallery of the room dressed up (balloon arches, chandeliers, styled tables,
+  celebrations), a custom-menu section, and a click-to-call booking CTA. Copy is intentionally
+  general — no invented capacity, pricing or packages; guests are routed to call (305) 967-8286.
+- **Added 6 decorated-venue photos** (balloon arch, styled dining room, celebrations, group
+  toast, table setting) from the shoot, plus **3 new food shots** (ribeye huancaína, tuna poke
+  bowl, shrimp wok noodles), all optimized to web-sized WebP with SEO filenames.
+- **More food, fewer empty-restaurant repeats:** replaced the repeated interior shots on About
+  (both split image and band background), and swapped the Gallery/Contact/About OG images and the
+  About/Privacy/Accessibility page-header photos from interior shots to food. The one remaining
+  interior lives on the Contact (location) page, where it's contextual.
+- Wired Events into the nav, footer, sitemap, the homepage (new "Rent Out KamiKoi" band) and the
+  Nightlife "Celebrate With Us" band. Verified: no broken image refs, one H1 per page, Events in
+  nav on all 11 pages, and no horizontal overflow at desktop or mobile. Cache-busted `fx.js`.
+
 ## v2.7 — 2026-07-01 — Logo fix + native order links (ThatsKrispy)
 
 - **Fixed the white logo "A".** The designer artwork baked the letter counters (the open

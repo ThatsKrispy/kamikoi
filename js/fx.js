@@ -45,12 +45,12 @@
 (function () {
   var page = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
   var MAP = {
-    about: 'kamikoi-venue-miami',
+    about: 'kamikoi-tuna-poke-bowl',
     gallery: 'kamikoi-ladies-night-drinks',
     contact: 'kamikoi-interior-dining-miami',
     menu: 'kamikoi-signature-sushi-rolls',
-    privacy: 'kamikoi-interior-dining-miami',
-    accessibility: 'kamikoi-interior-dining-miami'
+    privacy: 'kamikoi-fusion-plating',
+    accessibility: 'kamikoi-grilled-seafood'
   };
   // Homepage hero: rotate through a few high-impact shots (starts on the steak/risotto).
   if (page === 'index') {
