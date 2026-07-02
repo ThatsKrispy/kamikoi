@@ -1,7 +1,7 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
-   Brand accent, festive photo headers, food cover, scroll progress,
-   site-wide reveals, hero parallax + scroll cue.
+   Brand accent, festive photo headers, rotating food cover, scroll
+   progress, site-wide reveals, hero parallax + scroll cue.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
@@ -31,13 +31,26 @@
     privacy: 'kamikoi-interior-dining-miami',
     accessibility: 'kamikoi-interior-dining-miami'
   };
-  // Homepage hero: lead with the best-looking signature dish.
+  // Homepage hero: rotate through a few high-impact shots (starts on the steak/risotto).
   if (page === 'index') {
     var heroImg = document.querySelector('.hero__img');
-    if (heroImg) {
-      heroImg.setAttribute('src', 'assets/images/kamikoi-gallery-21.webp');
-      heroImg.setAttribute('alt', 'A KamiKoi signature sushi roll plated at the pass in Miami');
-      heroImg.style.objectPosition = 'center';
+    var reduceM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (heroImg && !reduceM) {
+      var shots = ['kamikoi-fusion-plating', 'kamikoi-gallery-21', 'kamikoi-gallery-24', 'kamikoi-events-hero'];
+      var hidx = 0;
+      heroImg.style.transition = 'opacity .7s ease, transform 8s ease';
+      setInterval(function () {
+        hidx = (hidx + 1) % shots.length;
+        var pre = new Image();
+        pre.onload = function () {
+          heroImg.style.opacity = '0';
+          setTimeout(function () {
+            heroImg.src = 'assets/images/' + shots[hidx] + '.webp';
+            heroImg.style.opacity = '1';
+          }, 350);
+        };
+        pre.src = 'assets/images/' + shots[hidx] + '.webp';
+      }, 6000);
     }
   }
   var img = MAP[page];
