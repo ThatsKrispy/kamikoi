@@ -1,11 +1,43 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
-   Adds scroll progress, site-wide reveals, hero parallax + scroll cue.
+   Adds scroll progress, site-wide reveals, hero parallax + scroll cue,
+   and festive photo backdrops behind interior page headers.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
    ============================================================ */
 'use strict';
+
+/* -- PAGE-HEADER PHOTOS (festive / women-enjoying imagery behind titles) --- */
+(function () {
+  var page = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '') || 'index';
+  var MAP = {
+    about: 'kamikoi-venue-miami',
+    gallery: 'kamikoi-ladies-night-drinks',
+    contact: 'kamikoi-interior-dining-miami',
+    menu: 'kamikoi-signature-sushi-rolls',
+    privacy: 'kamikoi-interior-dining-miami',
+    accessibility: 'kamikoi-interior-dining-miami'
+  };
+  var img = MAP[page];
+  if (!img) return;
+  var el = document.querySelector('.menu-hero') || document.querySelector('.page-head');
+  if (!el) return;
+  var ov = page === 'menu'
+    ? 'rgba(8,8,10,.5),rgba(8,8,10,.72)'
+    : 'rgba(8,8,11,.3),rgba(8,8,11,.58) 68%,rgba(8,8,11,.74)';
+  el.style.backgroundImage = "linear-gradient(180deg," + ov + "),url('assets/images/" + img + ".webp')";
+  el.style.backgroundSize = 'cover';
+  el.style.backgroundPosition = 'center 30%';
+  el.classList.add('kk-photohead');
+  var s = document.createElement('style');
+  s.textContent = '.kk-photohead{min-height:clamp(340px,50vh,500px);display:flex;flex-direction:column;'
+    + 'align-items:center;justify-content:center}'
+    + '.kk-photohead h1,.kk-photohead p,.kk-photohead .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.8)}'
+    + '.kk-photohead h1,.kk-photohead p{color:#fff}';
+  document.head.appendChild(s);
+})();
+
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
