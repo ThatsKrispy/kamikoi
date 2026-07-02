@@ -1,12 +1,24 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
-   Adds scroll progress, site-wide reveals, hero parallax + scroll cue,
-   festive photo headers, and the homepage party hero.
+   Brand accent, festive photo headers, food cover, scroll progress,
+   site-wide reveals, hero parallax + scroll cue.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
    ============================================================ */
 'use strict';
+
+/* -- BRAND: match accent to the logo red + calmer buttons (all pages) --- */
+(function () {
+  var s = document.createElement('style');
+  s.textContent =
+    ':root{--crimson:#ed1c24;--crimson-d:#c2121b;' +
+    '--glow-red:0 0 13px rgba(237,28,36,.26);--glow-mag:0 0 15px rgba(232,54,143,.30)}' +
+    '.btn-primary{animation:none;box-shadow:0 4px 16px rgba(237,28,36,.26)}' +
+    '.btn-primary:hover{box-shadow:0 6px 22px rgba(237,28,36,.42)}' +
+    '.navbar__order{animation:none;box-shadow:0 3px 14px rgba(237,28,36,.22)}';
+  document.head.appendChild(s);
+})();
 
 /* -- PAGE-HEADER PHOTOS (festive / women-enjoying imagery behind titles) --- */
 (function () {
@@ -19,13 +31,13 @@
     privacy: 'kamikoi-interior-dining-miami',
     accessibility: 'kamikoi-interior-dining-miami'
   };
-  // Homepage hero: use a fun, younger party photo, never the empty-venue shot.
+  // Homepage hero: lead with the best-looking signature dish.
   if (page === 'index') {
     var heroImg = document.querySelector('.hero__img');
-    if (heroImg && /nightlife-hero-miami|ladies-night-miami/.test(heroImg.getAttribute('src') || '')) {
-      heroImg.setAttribute('src', 'assets/images/kamikoi-events-hero.webp');
-      heroImg.setAttribute('alt', 'Young guests cheering with sparklers and cocktails at KamiKoi Sushi Fusion in Miami');
-      heroImg.style.objectPosition = 'center 28%';
+    if (heroImg) {
+      heroImg.setAttribute('src', 'assets/images/kamikoi-gallery-21.webp');
+      heroImg.setAttribute('alt', 'A KamiKoi signature sushi roll plated at the pass in Miami');
+      heroImg.style.objectPosition = 'center';
     }
   }
   var img = MAP[page];
