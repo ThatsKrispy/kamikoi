@@ -8,8 +8,8 @@
   --ink-2:#0E0D11;
   --ink-3:#151219;
   --ink-4:#1E1A24;
-  --crimson:#E4141F;
-  --crimson-d:#B30F18;
+  --crimson:#ed1c24;
+  --crimson-d:#c2121b;
   --gold:#E7B84B;
   --gold-d:#C99A32;
   --magenta:#E8368F;
@@ -18,7 +18,7 @@
   --muted:#A7A1AC;
   --line:rgba(255,255,255,.11);
   --line-2:rgba(255,255,255,.06);
-  --glow-red:0 0 24px rgba(228,20,31,.55);
+  --glow-red:0 0 13px rgba(237,28,36,.26);
   --glow-gold:0 0 22px rgba(231,184,75,.45);
   --glow-mag:0 0 24px rgba(232,54,143,.5);
   --shadow:0 22px 60px rgba(0,0,0,.55);
@@ -68,7 +68,7 @@ p{margin:0 0 1rem}
 /* ---------- BUTTONS ---------- */
 .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--ff-sans);font-weight:600;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;padding:15px 30px;border-radius:50px;border:2px solid transparent;cursor:pointer;transition:.22s ease;line-height:1}
 .btn-primary{background:var(--crimson);color:#fff;border-color:var(--crimson);box-shadow:var(--glow-red)}
-.btn-primary:hover{background:var(--crimson-d);border-color:var(--crimson-d);transform:translateY(-2px);box-shadow:0 0 34px rgba(228,20,31,.75)}
+.btn-primary:hover{background:var(--crimson-d);border-color:var(--crimson-d);transform:translateY(-2px);box-shadow:0 6px 22px rgba(237,28,36,.42)}
 .btn-gold{background:var(--gold);color:#12100c;border-color:var(--gold);box-shadow:var(--glow-gold)}
 .btn-gold:hover{background:var(--gold-d);border-color:var(--gold-d);transform:translateY(-2px)}
 .btn-outline-white{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
@@ -178,6 +178,20 @@ header[role=banner]{position:sticky;top:0;z-index:1000}
 .gallery-grid--page{grid-template-columns:repeat(4,1fr);gap:12px}
 .gallery-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;transition:.3s;box-shadow:var(--shadow-sm);border:1px solid var(--line-2)}
 .gallery-grid img:hover{transform:scale(1.04);box-shadow:var(--glow-mag);border-color:var(--magenta)}
+
+/* ---------- LIGHTBOX ---------- */
+.gallery-grid img{cursor:zoom-in}
+.kk-lb{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:26px;background:rgba(5,5,7,.93);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s ease}
+.kk-lb.open{opacity:1}
+.kk-lb__img{max-width:min(92vw,900px);max-height:80vh;border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 40px rgba(232,54,143,.16);border:1px solid var(--line)}
+.kk-lb__count{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);color:rgba(255,255,255,.72);font-size:.86rem;letter-spacing:.14em}
+.kk-lb__btn{position:absolute;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;cursor:pointer;transition:.2s;padding:0}
+.kk-lb__btn:hover{background:var(--crimson);border-color:var(--crimson);box-shadow:var(--glow-red)}
+.kk-lb__btn svg{width:22px;height:22px}
+.kk-lb__close{top:18px;right:18px}
+.kk-lb__prev{left:14px;top:50%;transform:translateY(-50%)}
+.kk-lb__next{right:14px;top:50%;transform:translateY(-50%)}
+@media(max-width:600px){.kk-lb{padding:12px}.kk-lb__prev{left:8px}.kk-lb__next{right:8px}.kk-lb__btn{width:42px;height:42px}}
 
 /* ---------- REVIEWS ---------- */
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:18px}
@@ -325,10 +339,14 @@ header[role=banner]{position:sticky;top:0;z-index:1000}
   .hero__overlay{background:linear-gradient(180deg,rgba(6,6,8,.5),rgba(6,6,8,.85))}
   .hero p{font-size:1.08rem}
   .navbar__order{display:none}
+  /* on mobile the call button becomes the primary nav CTA */
+  .navbar__right .navbar__icon-btn[href^="tel"]{background:var(--crimson);border-color:var(--crimson);color:#fff;box-shadow:0 3px 14px rgba(237,28,36,.3)}
 }
 @media(max-width:430px){
   .cat-grid,.feature-grid,.specials-grid,.footer__grid{grid-template-columns:1fr}
   .btn{padding:14px 24px;font-size:.88rem}
+  /* declutter the smallest screens — Instagram stays in footer + mobile menu */
+  .navbar__right .navbar__icon-btn[aria-label="Instagram"]{display:none}
 }
 /* ============================================================ NEON + TICKER */
 .ticker{position:relative;background:linear-gradient(90deg,var(--ink-2),#180a12,var(--ink-2));border-top:1px solid rgba(228,20,31,.55);border-bottom:1px solid rgba(232,54,143,.55);overflow:hidden;padding:15px 0;box-shadow:inset 0 0 34px rgba(228,20,31,.28)}
@@ -344,16 +362,21 @@ header[role=banner]{position:sticky;top:0;z-index:1000}
 @keyframes tickerscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 @keyframes glowpulse{0%,100%{box-shadow:0 0 16px rgba(228,20,31,.5)}50%{box-shadow:0 0 32px rgba(228,20,31,.85)}}
-.btn-primary{animation:glowpulse 2.6s ease-in-out infinite}
+.btn-primary{animation:none}
 .btn-primary:hover{animation:none}
 @keyframes tagpulse{0%,100%{box-shadow:0 0 16px rgba(232,54,143,.4)}50%{box-shadow:0 0 30px rgba(232,54,143,.8)}}
-.hero__tag{animation:tagpulse 3s ease-in-out infinite}
+/* staggered hero entrance on page load */
+@keyframes heroin{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero__tag{animation:tagpulse 3s ease-in-out infinite,heroin .7s cubic-bezier(.16,.84,.44,1) .08s both}
+.hero h1{animation:heroin .8s cubic-bezier(.16,.84,.44,1) .2s both}
+.hero p{animation:heroin .8s cubic-bezier(.16,.84,.44,1) .34s both}
+.hero__btns{animation:heroin .8s cubic-bezier(.16,.84,.44,1) .48s both}
 @keyframes flareflicker{0%,100%{opacity:1;text-shadow:0 0 22px rgba(231,184,75,.65)}45%{opacity:.86;text-shadow:0 0 10px rgba(231,184,75,.35)}55%{opacity:1;text-shadow:0 0 32px rgba(231,184,75,.95)}}
 .hero h1 .flare{animation:flareflicker 4.5s ease-in-out infinite}
 @keyframes edgeflow{0%{background-position:0 50%}100%{background-position:200% 50%}}
 .section--edge::before{background:linear-gradient(90deg,transparent,var(--crimson),var(--gold),var(--magenta),var(--crimson),transparent);background-size:200% auto;animation:edgeflow 6s linear infinite;height:2px;opacity:.85}
 .special:hover::before{height:4px}
-.navbar__order{animation:glowpulse 3.2s ease-in-out infinite}
+.navbar__order{animation:none}
 .navbar__order:hover{animation:none}
 
 /* ============================================================ FX LAYER v4 — bold, high-energy (global)

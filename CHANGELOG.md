@@ -1,5 +1,33 @@
 # KamiKoi Sushi Fusion — Rebuild Changelog
 
+## v2.7 — 2026-07-01 — Logo fix + native order links (ThatsKrispy)
+
+- **Fixed the white logo "A".** The designer artwork baked the letter counters (the open
+  triangle in the "A", plus the koi-eye dot) as solid white fills — correct on white paper,
+  but invisible on the dark nav/footer, so the "A" looked filled in. Removed those baked-in
+  white fills so the underlying letters render with proper open (transparent) counters on any
+  background. Fix is in `assets/logos/logo-white.svg`; used sitewide in nav, footer and newsletter.
+- **Order links now native in the HTML** (previously runtime-only): Toast "Order Online",
+  Uber Eats and Grubhub direct store URLs plus the Yelp icon are in `index.html` markup, so
+  they're crawler-visible, not just patched by JS.
+
+## v2.6 — 2026-07-01 — Polish pass: lightbox, hero entrance, cleanup (ThatsKrispy)
+
+- **Gallery lightbox site-wide** — every gallery grid (home, Gallery page, Happy Hour cocktails)
+  now opens in a full-screen viewer: tap/click or keyboard (Enter/Space), arrow-key + on-screen
+  prev/next, Esc/backdrop/button to close, photo counter, focus restore, scroll lock. Zero
+  dependencies, reduced-motion safe.
+- **Staggered hero entrance** — tag, headline, copy and buttons slide-fade in on load (CSS-only,
+  respects prefers-reduced-motion).
+- **Mobile CTA polish** — on phones the navbar call button is now a filled red primary CTA;
+  Instagram icon hidden below 430px to declutter (still in footer + mobile menu).
+- **Fixes:** contact-form error message showed hello@ instead of info@kamikoisushifusion.com;
+  Happy Hour eyebrows no longer duplicate their headings verbatim.
+- **Cleanup:** deleted orphaned brunch.html (retired page; /brunch 301s to /nightlife), 8 unused
+  webp images, and the stale IMAGES.md placeholder doc. Verified: every referenced image exists,
+  zero brunch references remain, all 10 pages pass HTML structure check, JS syntax-checked.
+- Cache-busted style.css + main.js to `?v=20260701-v6`.
+
 ## v2.5 — 2026-07-01 — Launch hardening / de-WordPress (ThatsKrispy)
 
 - **Removed the last WordPress dependency:** the menu page's "Download PDF Menu" link pointed at the

@@ -118,6 +118,75 @@
   });
 })();
 
+/* -- GALLERY LIGHTBOX --------------------------------------- */
+(function () {
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.gallery-grid img'));
+  if (!imgs.length) return;
+  var lb = null, lbImg, lbCount, idx = 0, lastFocus = null;
+
+  function build() {
+    lb = document.createElement('div');
+    lb.className = 'kk-lb';
+    lb.hidden = true;
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', 'Photo viewer');
+    lb.innerHTML =
+      '<img class="kk-lb__img" alt="">' +
+      '<span class="kk-lb__count" aria-hidden="true"></span>' +
+      '<button type="button" class="kk-lb__btn kk-lb__close" aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>' +
+      '<button type="button" class="kk-lb__btn kk-lb__prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>' +
+      '<button type="button" class="kk-lb__btn kk-lb__next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>';
+    document.body.appendChild(lb);
+    lbImg = lb.querySelector('.kk-lb__img');
+    lbCount = lb.querySelector('.kk-lb__count');
+    lb.querySelector('.kk-lb__close').addEventListener('click', close);
+    lb.querySelector('.kk-lb__prev').addEventListener('click', function () { nav(-1); });
+    lb.querySelector('.kk-lb__next').addEventListener('click', function () { nav(1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') nav(-1);
+      else if (e.key === 'ArrowRight') nav(1);
+    });
+  }
+
+  function show() {
+    var src = imgs[idx].currentSrc || imgs[idx].src;
+    lbImg.src = src;
+    lbImg.alt = imgs[idx].alt || '';
+    lbCount.textContent = (idx + 1) + ' / ' + imgs.length;
+  }
+  function nav(dir) { idx = (idx + dir + imgs.length) % imgs.length; show(); }
+  function open(i) {
+    if (!lb) build();
+    idx = i;
+    show();
+    lastFocus = document.activeElement;
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () { lb.classList.add('open'); });
+    lb.querySelector('.kk-lb__close').focus();
+  }
+  function close() {
+    lb.classList.remove('open');
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  imgs.forEach(function (img, i) {
+    img.setAttribute('tabindex', '0');
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'View larger: ' + (img.alt || 'photo'));
+    img.addEventListener('click', function () { open(i); });
+    img.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+    });
+  });
+})();
+
 /* -- CONTACT FORM (Web3Forms) ------------------------------ */
 (function () {
   var form = document.getElementById('contact-form');
@@ -151,7 +220,7 @@
         btn.textContent = orig; btn.disabled = false;
         if (statusEl) {
           statusEl.className = 'form-status error';
-          statusEl.textContent = 'Something went wrong. Please call (305) 967-8286 or email hello@kamikoisushifusion.com.';
+          statusEl.textContent = 'Something went wrong. Please call (305) 967-8286 or email info@kamikoisushifusion.com.';
         }
       });
   });

@@ -1,7 +1,6 @@
 /* ============================================================
    KAMIKOI SUSHI FUSION  |  FX layer (bold, high-energy)  |  ThatsKrispy
-   Brand accent, live order/review links, festive photo headers, rotating
-   food cover, scroll progress, site-wide reveals, hero parallax + cue.
+   Adds scroll progress, site-wide reveals, hero parallax + scroll cue.
    All reveal classes are added here in JS, so with JS disabled the page
    renders fully visible (no hidden content). Motion respects
    prefers-reduced-motion.
